@@ -2,6 +2,7 @@
 
 import os.path
 import shutil
+import stat
 
 ARES_HOME = os.path.expanduser('~/.ares')
 BASH_PROFILE_PATH = os.path.expanduser('~/.bash_profile')
@@ -11,7 +12,10 @@ ZSHRC_PATH = os.path.expanduser('~/.zshrc')
 def main():
     if not os.path.exists(ARES_HOME):
         os.mkdir(ARES_HOME)
-    shutil.copy('./ares.py', ARES_HOME + '/ares')
+    ares_path = ARES_HOME + '/ares'
+    shutil.copy('./ares.py', ares_path)
+    st = os.stat(ares_path)
+    os.chmod(ares_path, st.st_mode | stat.S_IEXEC)
 
     if os.path.exists(BASH_PROFILE_PATH):
         with open(BASH_PROFILE_PATH, mode='a') as bash_profile:
