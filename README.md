@@ -18,6 +18,7 @@ ares will make them appear in your project `res/drawable-<resolution>` folders a
 
     - Optional: run `ares_install`:
       ```
+      chmod +x ./ares_install.py
       ./ares_install.py
       ```
 
